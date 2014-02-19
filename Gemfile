@@ -4,7 +4,8 @@ gem 'sinatra'
 gem 'coffee-script'
 
 group :development, :test do
-  gem 'rack-test'
+  gem 'capybara', '2.0.3'
   gem 'rspec'
+  gem 'capybara-webkit'
   gem 'pry'
 end

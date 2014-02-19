@@ -1,10 +1,15 @@
-require 'rack/test'
+require 'rspec'
+require 'capybara/dsl'
+require 'capybara/rspec'
+require 'capybara-webkit'
 
 require File.expand_path '../../app/jsonr.rb', __FILE__
 
-module RSpecMixin
-  include Rack::Test::Methods
-  def app() Sinatra::Application end
-end
+Sinatra::Application.environment = :test
 
-RSpec.configure { |c| c.include RSpecMixin }
+Capybara.app = Sinatra::Application
+Capybara.javascript_driver = :webkit
+
+RSpec.configure do |config|
+  config.include Capybara
+end
