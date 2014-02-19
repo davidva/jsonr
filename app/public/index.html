@@ -14,9 +14,9 @@
 </head>
 <body ng-app="jsonrApp">
   <div ng-controller="JsonrCtrl">
-    <h1>{{title}}</h1>
-    <textarea id="source" rows="8" cols="50"></textarea>
-    <button id="format" ng-click="format()">Format!</button>
+    <h1>jsonr</h1>
+    <textarea id="source" rows="8" cols="50" ng-model="source"></textarea>
+    <button id="format" ng-click="format()">{{action}}</button>
     <div ng-repeat="line in output" class="output">
       <div hljs source="line"></div>
     </div>

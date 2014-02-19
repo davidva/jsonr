@@ -6,7 +6,13 @@ jsonrApp.config (hljsServiceProvider) ->
   hljsServiceProvider.setOptions
     tabReplace: '  '
 
-jsonrApp.controller 'JsonrCtrl', ($scope) ->
-  $scope.title = 'Ola ke ase!'
+jsonrApp.controller 'JsonrCtrl', ($scope, $http) ->
+  $scope.action = 'Format!'
   $scope.format = ->
-    $scope.output = ['{','','\t"ola": "ke ase"','}']
+    $scope.action = 'Processing...'
+    $http.post('/format', $scope.source)
+      .success (data) ->
+        $scope.output = data
+        $scope.action = 'Format!'
+      .error (data, status) ->
+        $scope.action = 'Format!'
