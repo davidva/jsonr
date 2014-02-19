@@ -3,8 +3,16 @@
   <title></title>
   <script type="text/javascript" src="angular.min.js"></script>
   <script type="text/javascript" src="application.js"></script>
+  <link rel="stylesheet" href="styles/default.css">
+  <script src="highlight.pack.js"></script>
+  <script>
+    hljs.configure({tabReplace: '    '});
+    hljs.initHighlightingOnLoad();
+  </script>
 </head>
 <body ng-app="jsonrApp">
-  <div ng-controller="JsonrCtrl">{{title}}</div>
+  <div ng-controller="JsonrCtrl">{{title}}
+    <pre><code>{{output}}</code></pre>
+  </div>
 </body>
 </html>
