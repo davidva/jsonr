@@ -1,8 +1,12 @@
 'use strict'
 
-angular.module 'jsonrApp', []
+jsonrApp = angular.module 'jsonrApp', ['hljs']
 
-angular.module('jsonrApp').controller 'JsonrCtrl', ($scope) ->
+jsonrApp.config (hljsServiceProvider) ->
+  hljsServiceProvider.setOptions
+    tabReplace: '  '
+
+jsonrApp.controller 'JsonrCtrl', ($scope) ->
   $scope.title = 'Ola ke ase!'
   $scope.format = ->
     $scope.output = ['{','','\t"ola": "ke ase"','}']
