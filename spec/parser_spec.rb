@@ -3,13 +3,23 @@ describe 'Parser' do
     Parser.new.parse('{"ola":"ke ase"}').should == ['{', "\t\"ola\": \"ke ase\"",'}']
   end
 
-  it 'parses nested elements' do
+  it 'parses empty hashes'
+
+  it 'parses hashes' do
     Parser.new.parse('{"ola":{"ke":"ase"}}').should == ['{', "\t\"ola\": {","\t\t\"ke\": \"ase\"","\t}",'}']
   end
 
-  it 'parses arrays'
+  it 'parses empty arrays' do
+    Parser.new.parse('{"ola":[ ]}').should == ['{', "\t\"ola\": []",'}']
+  end
+
+  it 'parses arrays' do
+    Parser.new.parse('{"ola":["ke","ase"]}').should == ['{', "\t\"ola\": [\"ke\", \"ase\"]",'}']
+  end
 
   it 'parses numbers'
 
   it 'parses booleans'
+
+  it 'parses nil'
 end
