@@ -11,7 +11,7 @@ get '/' do
 end
 
 post '/format' do
-  json Parser.new(request.body.read).parse
+  json Parser.new.parse(request.body.read)
 end
 
 get '/js/application.js' do

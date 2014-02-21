@@ -1,16 +1,25 @@
 class Parser
-  attr_reader :json
+  def parse json, indent = ''
+    hash = json.is_a?(Hash) ? json : JSON.parse(json)
 
-  def initialize json
-    @json = JSON.parse json
+    hash.inject ['{'] do |memo,(k,v)|
+      memo.push format_field k, v, indent
+      memo
+    end.push("#{indent}}").flatten
   end
 
-  def parse
-    array = ['{']
-    json.each do |k,v|
-      array.push "\t\"#{k}\": \"#{v}\""
+  private
+
+  def format_field key, value, indent
+    lines = ["#{indent}\t\"#{key}\":"]
+    if value.is_a? Hash
+      new_lines = parse(value, indent + "\t")
+      new_lines[0] = "#{lines[0]} #{new_lines[0]}"
+      new_lines
+    elsif value.is_a? Array
+      lines[0] += value.to_s
+    else
+      lines[0] += " \"#{value}\""
     end
-    array.push '}'
-    array
   end
 end
