@@ -1,3 +1,9 @@
+require 'capybara/rspec'
+require 'capybara-webkit'
+
+Capybara.app = Sinatra::Application
+Capybara.javascript_driver = :webkit
+
 feature 'jsonr', js: true do
   scenario 'should allow accessing the home page' do
     visit '/'
