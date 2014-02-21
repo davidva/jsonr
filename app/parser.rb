@@ -11,15 +11,14 @@ class Parser
   private
 
   def format_field key, value, indent
-    lines = ["#{indent}\t\"#{key}\":"]
+    line = "#{indent}\t\"#{key}\":"
+
     if value.is_a? Hash
-      new_lines = parse(value, indent + "\t")
-      new_lines[0] = "#{lines[0]} #{new_lines[0]}"
-      new_lines
-    elsif value.is_a? Array
-      lines[0] += value.to_s
+      nested_lines = parse(value, indent + "\t")
+      nested_lines[0] = "#{line} #{nested_lines[0]}"
+      nested_lines
     else
-      lines[0] += " \"#{value}\""
+      ["#{line} \"#{value}\""]
     end
   end
 end
