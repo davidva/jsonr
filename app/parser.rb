@@ -12,7 +12,7 @@ class Parser
       format_hash(element, indent)
     elsif element.is_a? Array
       format_array(element, indent)
-    elsif element.is_a? Numeric
+    elsif element.is_a?(Numeric) || element.is_a?(TrueClass) || element.is_a?(FalseClass)
       [element.to_s]
     else
       [quote(element)]

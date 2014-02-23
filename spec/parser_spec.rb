@@ -79,7 +79,15 @@ describe 'Parser' do
     Parser.new.parse('[1.234]').should == expected
   end
 
-  # it 'parses booleans'
+  it 'parses booleans' do
+    expected = <<-eos
+[
+\tfalse
+]
+      eos
+    expected = expected.split("\n")
+    Parser.new.parse('[false]').should == expected
+  end
 
-  # it 'parses nil'
+  it 'parses nil'
 end
