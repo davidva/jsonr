@@ -89,5 +89,13 @@ describe 'Parser' do
     Parser.new.parse('[false]').should == expected
   end
 
-  it 'parses nil'
+  it 'parses null' do
+    expected = <<-eos
+[
+\tnull
+]
+      eos
+    expected = expected.split("\n")
+    Parser.new.parse('[null]').should == expected
+  end
 end

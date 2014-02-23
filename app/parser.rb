@@ -8,12 +8,15 @@ class Parser
   private
 
   def format element, indent = ''
-    if element.is_a? Hash
+    case element
+    when Hash
       format_hash(element, indent)
-    elsif element.is_a? Array
+    when Array
       format_array(element, indent)
-    elsif element.is_a?(Numeric) || element.is_a?(TrueClass) || element.is_a?(FalseClass)
+    when Numeric, TrueClass, FalseClass
       [element.to_s]
+    when NilClass
+      ["null"]
     else
       [quote(element)]
     end
