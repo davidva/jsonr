@@ -17,7 +17,7 @@
     <h1>jsonr</h1>
     <textarea id="source" rows="8" cols="50" ng-model="source"></textarea>
     <button id="format" ng-click="format()">{{action}}</button>
-    <div ng-repeat="line in output" class="output">
+    <div ng-repeat="line in output track by $index" class="output">
       <div hljs source="line"></div>
     </div>
   </div>
