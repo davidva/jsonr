@@ -1,3 +1,9 @@
 <textarea id="source1" rows="8" cols="50" ng-model="source1"></textarea>
 <textarea id="source2" rows="8" cols="50" ng-model="source2"></textarea>
 <button id="compare" ng-click="compare()">{{action}}</button>
+<div ng-repeat="line in output.0 track by $index" class="output">
+  <div hljs source="line"></div>
+</div>
+<div ng-repeat="line in output.1 track by $index" class="output">
+  <div hljs source="line"></div>
+</div>

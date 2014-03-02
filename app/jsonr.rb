@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'sinatra'
+require 'sinatra/reloader' if development?
 require 'sinatra/json'
 require 'coffee-script'
 
@@ -16,10 +17,9 @@ end
 
 post '/compare_two' do
   json [
-      '{',                '{',
-      '',                 '+ "ola": "ke asia"',
-      '- "ola": "ke ase"', '',
-      '}',                '}']
+    ['{', "\t",                     "\t\"ola\": \"ke ase\"", '}'],
+    ['{', "\t\"ola\": \"ke asia\"", "\t",                    '}']
+  ]
 end
 
 get '/js/application.js' do

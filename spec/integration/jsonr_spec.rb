@@ -26,9 +26,8 @@ feature 'jsonr', js: true do
     page.should have_content 'Compare!'
 
     all(:css, 'code').map(&:text).should == [
-      '{',                '{',
-      '',                 '+ "ola": "ke asia"',
-      '- "ola": "ke ase"', '',
-      '}',                '}']
+      '{', '',                 '"ola": "ke ase"', '}',
+      '{', '"ola": "ke asia"', '',                '}'
+    ]
   end
 end
