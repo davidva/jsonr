@@ -21,26 +21,34 @@ jsonrApp.config ['$routeProvider', ($routeProvider) ->
       })
   ]
 
-jsonrControllers = angular.module 'jsonrControllers', []
+jsonrControllers = angular.module 'jsonrControllers', ['jsonrServices']
 
-jsonrControllers.controller 'FormatCtrl', ($scope, $http) ->
+jsonrControllers.controller 'FormatCtrl', ($scope, Server) ->
   $scope.action = 'Format!'
+  $scope.path = '/format'
   $scope.format = ->
-    $scope.action = 'Processing...'
-    $http.post('/format', $scope.source)
-      .success (data) ->
-        $scope.output = data
-        $scope.action = 'Format!'
-      .error (data, status) ->
-        $scope.action = 'Format!'
+    Server.process $scope, $scope.source
 
-jsonrControllers.controller 'CompareTwoCtrl', ($scope, $http) ->
+jsonrControllers.controller 'CompareTwoCtrl', ($scope, Server) ->
   $scope.action = 'Compare!'
+  $scope.path = '/process_two'
   $scope.compare = ->
-    $scope.action = 'Processing...'
-    $http.post('/compare_two', $scope.source)
-      .success (data) ->
-        $scope.output = data
-        $scope.action = 'Compare!'
-      .error (data, status) ->
-        $scope.action = 'Compare!'
+    Server.process $scope,
+      source1: $scope.source1
+      source2: $scope.source2
+
+jsonrServices = angular.module 'jsonrServices', []
+
+jsonrServices.factory 'Server', ['$http', ($http) ->
+  {
+    process: (scope, input) ->
+      buttonLabel = scope.action
+      scope.action = 'Processing...'
+      $http.post(scope.path, input)
+        .success (data) ->
+          scope.output = data
+          scope.action = buttonLabel
+        .error (data, status) ->
+          scope.action = buttonLabel
+  }
+]
