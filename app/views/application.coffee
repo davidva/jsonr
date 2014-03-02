@@ -36,3 +36,11 @@ jsonrControllers.controller 'FormatCtrl', ($scope, $http) ->
 
 jsonrControllers.controller 'CompareTwoCtrl', ($scope, $http) ->
   $scope.action = 'Compare!'
+  $scope.compare = ->
+    $scope.action = 'Processing...'
+    $http.post('/compare_two', $scope.source)
+      .success (data) ->
+        $scope.output = data
+        $scope.action = 'Compare!'
+      .error (data, status) ->
+        $scope.action = 'Compare!'
