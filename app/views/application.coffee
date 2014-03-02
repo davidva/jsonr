@@ -31,7 +31,7 @@ jsonrControllers.controller 'FormatCtrl', ($scope, Server) ->
 
 jsonrControllers.controller 'CompareTwoCtrl', ($scope, Server) ->
   $scope.action = 'Compare!'
-  $scope.path = '/process_two'
+  $scope.path = '/compare_two'
   $scope.compare = ->
     Server.process $scope,
       source1: $scope.source1

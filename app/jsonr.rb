@@ -14,6 +14,14 @@ post '/format' do
   json Parser.new.parse(request.body.read)
 end
 
+post '/compare_two' do
+  json [
+      '{',                '{',
+      '',                 '+ "ola": "ke asia"',
+      '- "ola": "ke ase"', '',
+      '}',                '}']
+end
+
 get '/js/application.js' do
   coffee :application
 end
