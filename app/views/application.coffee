@@ -1,6 +1,6 @@
 'use strict'
 
-jsonrApp = angular.module 'jsonrApp', ['ngRoute', 'hljs']
+jsonrApp = angular.module 'jsonrApp', ['ngRoute', 'hljs', 'jsonrControllers']
 
 jsonrApp.config (hljsServiceProvider) ->
   hljsServiceProvider.setOptions
@@ -10,18 +10,20 @@ jsonrApp.config ['$routeProvider', ($routeProvider) ->
     $routeProvider.
       when('/', {
         templateUrl: '/format.html'
-        controller: 'JsonrCtrl'
+        controller: 'FormatCtrl'
       }).
       when('/compare_two', {
         templateUrl: '/compare_two.html'
-        controller: 'JsonrCtrl'
+        controller: 'CompareTwoCtrl'
       }).
       otherwise({
         redirectTo: '/'
       })
   ]
 
-jsonrApp.controller 'JsonrCtrl', ($scope, $http) ->
+jsonrControllers = angular.module 'jsonrControllers', []
+
+jsonrControllers.controller 'FormatCtrl', ($scope, $http) ->
   $scope.action = 'Format!'
   $scope.format = ->
     $scope.action = 'Processing...'
@@ -31,3 +33,6 @@ jsonrApp.controller 'JsonrCtrl', ($scope, $http) ->
         $scope.action = 'Format!'
       .error (data, status) ->
         $scope.action = 'Format!'
+
+jsonrControllers.controller 'CompareTwoCtrl', ($scope, $http) ->
+  $scope.action = 'Compare!'
