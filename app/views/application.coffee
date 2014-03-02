@@ -1,10 +1,25 @@
 'use strict'
 
-jsonrApp = angular.module 'jsonrApp', ['hljs']
+jsonrApp = angular.module 'jsonrApp', ['ngRoute', 'hljs']
 
 jsonrApp.config (hljsServiceProvider) ->
   hljsServiceProvider.setOptions
     tabReplace: '  '
+
+jsonrApp.config ['$routeProvider', ($routeProvider) ->
+    $routeProvider.
+      when('/', {
+        templateUrl: '/format.html'
+        controller: 'JsonrCtrl'
+      }).
+      when('/compare_two', {
+        templateUrl: '/compare_two.html'
+        controller: 'JsonrCtrl'
+      }).
+      otherwise({
+        redirectTo: '/'
+      })
+  ]
 
 jsonrApp.controller 'JsonrCtrl', ($scope, $http) ->
   $scope.action = 'Format!'
