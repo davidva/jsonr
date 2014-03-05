@@ -6,6 +6,7 @@ require 'sinatra/json'
 require 'coffee-script'
 
 require './app/parser'
+require './app/comparer'
 
 get '/' do
   send_file File.join(settings.public_folder, 'index.html')
