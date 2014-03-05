@@ -17,19 +17,11 @@ post '/format' do
 end
 
 post '/compare_two' do
-  json [
-    [
-      {status: '',        value: '{'},
-      {status: 'added',   value: "\t"},
-      {status: 'removed', value: "\t\"ola\": \"ke ase\""},
-      {status: '',        value: '}'}
-    ], [
-      {status: '',        value: '{'},
-      {status: 'added',   value: "\t\"ola\": \"ke asia\""},
-      {status: 'removed', value: "\t"},
-      {status: '',        value: '}'}
-    ]
-  ]
+  input = JSON.parse(request.body.read)
+  input1 = Parser.new.parse JSON.parse(input['source1'])
+  input2 = Parser.new.parse JSON.parse(input['source2'])
+  output = Comparer.new.compare input1, input2
+  json output
 end
 
 get '/js/application.js' do
