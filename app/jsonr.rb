@@ -17,8 +17,17 @@ end
 
 post '/compare_two' do
   json [
-    ['{', "\t",                     "\t\"ola\": \"ke ase\"", '}'],
-    ['{', "\t\"ola\": \"ke asia\"", "\t",                    '}']
+    [
+      {status: '',        value: '{'},
+      {status: 'added',   value: "\t"},
+      {status: 'removed', value: "\t\"ola\": \"ke ase\""},
+      {status: '',        value: '}'}
+    ], [
+      {status: '',        value: '{'},
+      {status: 'added',   value: "\t\"ola\": \"ke asia\""},
+      {status: 'removed', value: "\t"},
+      {status: '',        value: '}'}
+    ]
   ]
 end
 

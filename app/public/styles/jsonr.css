@@ -4,3 +4,9 @@
 .output pre {
   margin: 0;
 }
+.output .added pre code {
+  background: lightgreen;
+}
+.output .removed pre code {
+  background: lightcoral;
+}
