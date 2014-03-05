@@ -13,7 +13,7 @@ get '/' do
 end
 
 post '/format' do
-  json Parser.new.parse(request.body.read)
+  json Parser.new.parse(JSON.parse(request.body.read))
 end
 
 post '/compare_two' do

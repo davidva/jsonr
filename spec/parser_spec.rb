@@ -6,7 +6,7 @@ describe 'Parser' do
 }
     eos
       expected = expected.split("\n")
-      Parser.new.parse('{}').should == expected
+      Parser.new.parse({}).should == expected
     end
 
     it 'parses hashes' do
@@ -17,7 +17,7 @@ describe 'Parser' do
 }
       eos
       expected = expected.split("\n")
-      Parser.new.parse('{"key1":"value 1","key2":"value 2"}').should == expected
+      Parser.new.parse({key1:"value 1",key2:"value 2"}).should == expected
     end
 
     it 'parses nested hashes' do
@@ -29,7 +29,7 @@ describe 'Parser' do
 }
       eos
       expected = expected.split("\n")
-      Parser.new.parse('{"key1":{"key2":"value 2"}}').should == expected
+      Parser.new.parse({key1:{key2:"value 2"}}).should == expected
     end
   end
 
@@ -40,7 +40,7 @@ describe 'Parser' do
 ]
     eos
       expected = expected.split("\n")
-      Parser.new.parse('[]').should == expected
+      Parser.new.parse([]).should == expected
     end
 
     it 'parses arrays' do
@@ -51,7 +51,7 @@ describe 'Parser' do
 ]
       eos
       expected = expected.split("\n")
-      Parser.new.parse('["value 1","value 2"]').should == expected
+      Parser.new.parse(["value 1","value 2"]).should == expected
     end
 
     it 'parses nested arrays' do
@@ -65,7 +65,7 @@ describe 'Parser' do
 ]
       eos
       expected = expected.split("\n")
-      Parser.new.parse('["value 1", ["value 2","value 3"]]').should == expected
+      Parser.new.parse(["value 1", ["value 2","value 3"]]).should == expected
     end
   end
 
@@ -76,7 +76,7 @@ describe 'Parser' do
 ]
       eos
     expected = expected.split("\n")
-    Parser.new.parse('[1.234]').should == expected
+    Parser.new.parse([1.234]).should == expected
   end
 
   it 'parses booleans' do
@@ -86,7 +86,7 @@ describe 'Parser' do
 ]
       eos
     expected = expected.split("\n")
-    Parser.new.parse('[false]').should == expected
+    Parser.new.parse([false]).should == expected
   end
 
   it 'parses null' do
@@ -96,6 +96,6 @@ describe 'Parser' do
 ]
       eos
     expected = expected.split("\n")
-    Parser.new.parse('[null]').should == expected
+    Parser.new.parse([nil]).should == expected
   end
 end

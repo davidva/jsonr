@@ -1,7 +1,5 @@
 class Parser
-  def parse input, indent = ''
-    json = JSON.parse(input)
-
+  def parse json, indent = ''
     format(json).flatten
   end
 
