@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
 gem 'sinatra'
-gem 'coffee-script'
+gem 'barista'
 gem 'sinatra-contrib'
 
 group :development, :test do
   gem 'capybara', '2.0.3'
   gem 'rspec'
-  gem 'capybara-webkit'
+  gem 'capybara-webkit', '0.14.2'
   gem 'pry'
 end

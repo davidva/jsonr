@@ -1,12 +1,18 @@
 require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/json'
-require 'coffee-script'
+require 'barista'
 
 require './app/parser'
 require './app/comparer'
 
-set :public_folder, 'app/public'
+register Barista::Integration::Sinatra
+
+Barista.configure do |c|
+  c.output_root = 'public/js'
+end
+
+set :public_folder, 'public'
 
 get '/' do
   redirect 'index.html'
@@ -22,8 +28,4 @@ post '/compare_two' do
   input2 = Parser.new.parse JSON.parse(input['source2'])
   output = Comparer.new.compare input1, input2
   json output
-end
-
-get '/js/application.js' do
-  coffee :application
 end
