@@ -1,15 +1,15 @@
-require 'rubygems'
 require 'bundler/setup'
 require 'sinatra'
-require 'sinatra/reloader' if development?
 require 'sinatra/json'
 require 'coffee-script'
 
 require './app/parser'
 require './app/comparer'
 
+set :public_folder, 'app/public'
+
 get '/' do
-  send_file File.join(settings.public_folder, 'index.html')
+  redirect 'index.html'
 end
 
 post '/format' do
