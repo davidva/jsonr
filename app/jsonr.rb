@@ -1,18 +1,7 @@
+require 'rubygems'
 require 'bundler/setup'
-require 'sinatra'
-require 'sinatra/json'
-require 'barista'
 
-require './app/parser'
-require './app/comparer'
-
-register Barista::Integration::Sinatra
-
-Barista.configure do |c|
-  c.output_root = 'public/js'
-end
-
-set :public_folder, 'public'
+Dir['./app/jsonr/*.rb'].each  { |f| require f }
 
 get '/' do
   redirect 'index.html'
