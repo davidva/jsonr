@@ -5,12 +5,12 @@
   <tr>
     <td>
       <div ng-repeat="line in output.0 track by $index" class="output">
-        <div hljs class="{{line.status}}" source="line.value"></div>
+        <div hljs class="{{line.status}}" source="line.value" language="json"></div>
       </div>
     </td>
     <td>
       <div ng-repeat="line in output.1 track by $index" class="output">
-        <div hljs class="{{line.status}}" source="line.value"></div>
+        <div hljs class="{{line.status}}" source="line.value" language="json"></div>
       </div>
     </td>
   </tr>

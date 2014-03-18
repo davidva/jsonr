@@ -1,5 +1,5 @@
 <textarea id="source" rows="8" cols="50" ng-model="source"></textarea>
 <button id="format" ng-click="format()">{{action}}</button>
 <div ng-repeat="line in output track by $index" class="output">
-  <div hljs source="line"></div>
+  <div hljs source="line" language="json"></div>
 </div>
