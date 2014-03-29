@@ -11,7 +11,7 @@ describe Comparer do
 
     specify do
       output[0].map { |line| line[:status] }.should == ['removed']
-      output[1].map { |line| line[:status] }.should == ['removed']
+      output[1].map { |line| line[:status] }.should == ['']
     end
   end
 
@@ -26,7 +26,7 @@ describe Comparer do
     end
 
     specify do
-      output[0].map { |line| line[:status] }.should == ['added']
+      output[0].map { |line| line[:status] }.should == ['']
       output[1].map { |line| line[:status] }.should == ['added']
     end
   end
@@ -42,8 +42,8 @@ describe Comparer do
     end
 
     specify do
-      output[0].map { |line| line[:status] }.should == ['added','removed']
-      output[1].map { |line| line[:status] }.should == ['added','removed']
+      output[0].map { |line| line[:status] }.should == ['','removed']
+      output[1].map { |line| line[:status] }.should == ['added','']
     end
   end
 
@@ -58,8 +58,8 @@ describe Comparer do
     end
 
     specify do
-      output[0].map { |line| line[:status] }.should == ['added','removed','']
-      output[1].map { |line| line[:status] }.should == ['added','removed','']
+      output[0].map { |line| line[:status] }.should == ['','removed','']
+      output[1].map { |line| line[:status] }.should == ['added','','']
     end
   end
 
@@ -74,8 +74,8 @@ describe Comparer do
     end
 
     specify do
-      output[0].map { |line| line[:status] }.should == ['removed','','added']
-      output[1].map { |line| line[:status] }.should == ['removed','','added']
+      output[0].map { |line| line[:status] }.should == ['removed','','']
+      output[1].map { |line| line[:status] }.should == ['','','added']
     end
   end
 end

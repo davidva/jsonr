@@ -12,11 +12,11 @@ class Comparer
       compare input1[1..-1], input2[1..-1], output
     elsif first2.nil? || input1.map {|line| remove_ending_comma line }.include?(first2)
       output[0] << {value: input1.first, status: 'removed'}
-      output[1] << {value: ' ', status: 'removed'}
+      output[1] << {value: ' ', status: ''}
 
       compare input1[1..-1], input2, output
     else
-      output[0] << {value: ' ', status: 'added'}
+      output[0] << {value: ' ', status: ''}
       output[1] << {value: input2.first, status: 'added'}
 
       compare input1, input2[1..-1], output
