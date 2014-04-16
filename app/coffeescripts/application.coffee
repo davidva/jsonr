@@ -16,6 +16,10 @@ jsonrApp.config ['$routeProvider', ($routeProvider) ->
         templateUrl: '/compare_two.html'
         controller: 'CompareTwoCtrl'
       }).
+      when('/compare_list', {
+        templateUrl: '/compare_list.html'
+        controller: 'CompareListCtrl'
+      }).
       otherwise({
         redirectTo: '/'
       })
@@ -36,6 +40,12 @@ jsonrControllers.controller 'CompareTwoCtrl', ($scope, Server) ->
     Server.process $scope,
       source1: $scope.source1
       source2: $scope.source2
+
+jsonrControllers.controller 'CompareListCtrl', ($scope, Server) ->
+  $scope.action = 'Compare!'
+  $scope.path = '/compare_list'
+  $scope.compare = ->
+    Server.process $scope, $scope.source
 
 jsonrServices = angular.module 'jsonrServices', []
 

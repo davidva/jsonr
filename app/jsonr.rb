@@ -18,3 +18,8 @@ post '/compare_two' do
   output = Comparer.new.compare input1, input2
   json output
 end
+
+post '/compare_list' do
+  output = [[{value: "{",status: ""},{value: " ",status: ""},{value: "\t\"ola\": \"ke ase\"",status: "removed"},{value: "}",status: ""}],[{value: "{",status: ""},{value: "\t\"ola\": \"ke asia\"",status: "added"},{value: " ",status: ""},{value: "}",status: ""}]]
+  json output
+end

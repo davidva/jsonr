@@ -30,4 +30,19 @@ feature 'jsonr', js: true do
       '{', '"ola": "ke asia"', '',                '}'
     ]
   end
+
+  scenario 'comparing list' do
+    visit '/'
+    click_link 'compare list'
+
+    fill_in 'source', with: '[{"ola":"ke ase"},{"ola":"ke asia"}]'
+    click_button 'compare'
+
+    page.should have_content 'Compare!'
+
+    all(:css, 'code').map(&:text).should == [
+      '{', '',                 '"ola": "ke ase"', '}',
+      '{', '"ola": "ke asia"', '',                '}'
+    ]
+  end
 end

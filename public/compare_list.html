@@ -1,0 +1,16 @@
+<textarea id="source" rows="8" cols="50" ng-model="source"></textarea>
+<button id="compare" ng-click="compare()">{{action}}</button>
+<table>
+  <tr>
+    <td>
+      <div ng-repeat="line in output.0 track by $index" class="output">
+        <div hljs class="{{line.status}}" source="line.value" language="json"></div>
+      </div>
+    </td>
+    <td>
+      <div ng-repeat="line in output.1 track by $index" class="output">
+        <div hljs class="{{line.status}}" source="line.value" language="json"></div>
+      </div>
+    </td>
+  </tr>
+</table>
