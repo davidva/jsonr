@@ -1,11 +1,11 @@
 class Parser
-  def parse json, indent = ''
+  def parse(json, indent = '')
     format(json).flatten
   end
 
   private
 
-  def format element, indent = ''
+  def format(element, indent = '')
     case element
     when Hash
       format_hash(element, indent)
@@ -14,13 +14,13 @@ class Parser
     when Numeric, TrueClass, FalseClass
       [element.to_s]
     when NilClass
-      ["null"]
+      ['null']
     else
       [quote(element)]
     end
   end
 
-  def format_hash hash, indent
+  def format_hash(hash, indent)
     lines = ['{']
     keys = hash.keys
     unless keys.empty?
@@ -33,7 +33,7 @@ class Parser
     lines
   end
 
-  def format_hash_element key, value, indent, last = false
+  def format_hash_element(key, value, indent, last = false)
     lines = format(value, indent)
     lines[0] = "#{format_key(key, indent)}#{lines[0]}"
     return lines if last
@@ -41,11 +41,11 @@ class Parser
     lines
   end
 
-  def format_key key, indent
+  def format_key(key, indent)
     "#{indent}#{quote key}: "
   end
 
-  def format_array array, indent
+  def format_array(array, indent)
     lines = ['[']
     unless array.empty?
       last_value = array.pop
@@ -57,7 +57,7 @@ class Parser
     lines
   end
 
-  def format_array_element value, indent, last = false
+  def format_array_element(value, indent, last = false)
     lines = format(value, indent)
     lines[0] = "#{indent}#{lines[0]}"
     return lines if last
@@ -65,7 +65,7 @@ class Parser
     lines
   end
 
-  def quote value
+  def quote(value)
     "\"#{value}\""
   end
 end
