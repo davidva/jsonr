@@ -1,5 +1,5 @@
 class ListComparer
-  def initialize json
+  def initialize(json)
     @json = json
   end
 

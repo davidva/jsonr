@@ -12,7 +12,7 @@ feature 'jsonr', js: true do
 
     page.should_not have_content 'Processing...'
 
-    all(:css, 'code').map(&:text).should == ['{','"ola": "ke ase"','}']
+    all(:css, 'code').map(&:text).should == ['{', '"ola": "ke ase"', '}']
   end
 
   scenario 'comparing two jsons' do
