@@ -35,14 +35,16 @@ feature 'jsonr', js: true do
     visit '/'
     click_link 'compare list'
 
-    fill_in 'source', with: '[{"ola":"ke ase"},{"ola":"ke asia"}]'
+    fill_in 'source', with: '[{"ola":"ke ase"},{"ola":"ke asia"},{"ola":"ke ase"}]'
     click_button 'compare'
 
     page.should have_content 'Compare!'
 
     all(:css, 'code').map(&:text).should == [
-      '{', '',                 '"ola": "ke ase"', '}',
-      '{', '"ola": "ke asia"', '',                '}'
+      '{', '',                 '"ola": "ke ase"',  '}',
+      '{', '"ola": "ke asia"', '',                 '}',
+      '{', '',                 '"ola": "ke asia"', '}',
+      '{', '"ola": "ke ase"',  '',                 '}'
     ]
   end
 end

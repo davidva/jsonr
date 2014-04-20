@@ -8,7 +8,8 @@ get '/' do
 end
 
 post '/format' do
-  json Parser.new.parse(JSON.parse(request.body.read))
+  output = Parser.new.parse(JSON.parse(request.body.read))
+  json output
 end
 
 post '/compare_two' do
@@ -20,6 +21,35 @@ post '/compare_two' do
 end
 
 post '/compare_list' do
-  output = [[{value: "{",status: ""},{value: " ",status: ""},{value: "\t\"ola\": \"ke ase\"",status: "removed"},{value: "}",status: ""}],[{value: "{",status: ""},{value: "\t\"ola\": \"ke asia\"",status: "added"},{value: " ",status: ""},{value: "}",status: ""}]]
+  output = [
+    [
+      [
+        { value: "{", status: "" },
+        { value: " ", status: "" },
+        { value: "\t\"ola\": \"ke ase\"", status: "removed" },
+        { value: "}", status: "" }
+      ],
+      [
+        { value: "{", status: "" },
+        { value: "\t\"ola\": \"ke asia\"", status: "added" },
+        { value: " ", status: "" },
+        { value: "}", status: "" }
+      ]
+    ],
+    [
+      [
+        { value: "{", status: "" },
+        { value: " ", status: "" },
+        { value: "\t\"ola\": \"ke asia\"", status: "removed" },
+        { value: "}", status: "" }
+      ],
+      [
+        { value: "{", status: "" },
+        { value: "\t\"ola\": \"ke ase\"", status: "added" },
+        { value: " ", status: "" },
+        { value: "}", status: "" }
+      ]
+    ]
+  ]
   json output
 end
