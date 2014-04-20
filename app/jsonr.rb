@@ -8,7 +8,8 @@ get '/' do
 end
 
 post '/format' do
-  json Parser.new.parse(JSON.parse(request.body.read))
+  output = Parser.new.parse(JSON.parse(request.body.read))
+  json output
 end
 
 post '/compare_two' do
@@ -16,5 +17,10 @@ post '/compare_two' do
   input1 = Parser.new.parse JSON.parse(input['source1'])
   input2 = Parser.new.parse JSON.parse(input['source2'])
   output = Comparer.new.compare input1, input2
+  json output
+end
+
+post '/compare_list' do
+  output = ListComparer.new(JSON.parse(request.body.read)).process
   json output
 end
