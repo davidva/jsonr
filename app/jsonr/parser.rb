@@ -28,16 +28,16 @@ class Parser
       []
     elsif hash.length == 1
       key = hash.keys.first
-      [format_hash_element(key, hash[key], true)]
+      [format_element(hash[key], true) { format_key(key) }]
     else
       key = hash.keys.first
-      format_hash(hash.reject { |k,_| k == key }).unshift format_hash_element(key, hash[key])
+      format_hash(hash.reject { |k,_| k == key }).unshift format_element(hash[key]) { format_key(key) }
     end
   end
 
-  def format_hash_element(key, value, last = false)
+  def format_element(value, last = false)
     lines = Parser.new(value, next_indent).parse
-    lines[0] = "#{format_key(key)}#{lines[0]}"
+    lines[0] = "#{yield}#{lines[0]}"
     return lines if last
     lines[-1] = "#{lines[-1]},"
     lines
@@ -51,18 +51,10 @@ class Parser
     if array.length == 0
       []
     elsif array.length == 1
-      [format_array_element(array.first, true)]
+      [format_element(array.first, true) { next_indent }]
     else
-      format_array(array.drop(1)).unshift format_array_element(array.first)
+      format_array(array.drop(1)).unshift format_element(array.first) { next_indent }
     end
-  end
-
-  def format_array_element(value, last = false)
-    lines = Parser.new(value, next_indent).parse
-    lines[0] = "#{indent}\t#{lines[0]}"
-    return lines if last
-    lines[-1] = "#{lines[-1]},"
-    lines
   end
 
   def quote value
