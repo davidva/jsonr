@@ -16,7 +16,7 @@ post '/compare_two' do
   input = JSON.parse(request.body.read)
   input1 = Parser.new.parse JSON.parse(input['source1'])
   input2 = Parser.new.parse JSON.parse(input['source2'])
-  output = Comparer.new.compare input1, input2
+  output = Comparer.new(input1, input2).compare
   json output
 end
 
