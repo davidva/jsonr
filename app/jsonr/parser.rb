@@ -31,7 +31,7 @@ class Parser
       [format_element(hash[key], true) { format_key(key) }]
     else
       key = hash.keys.first
-      format_hash(hash.reject { |k,_| k == key }).unshift format_element(hash[key]) { format_key(key) }
+      format_hash(hash.reject { |k, _| k == key }).unshift format_element(hash[key]) { format_key(key) }
     end
   end
 
@@ -57,7 +57,7 @@ class Parser
     end
   end
 
-  def quote value
+  def quote(value)
     "\"#{value}\""
   end
 
