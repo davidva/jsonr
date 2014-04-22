@@ -4,7 +4,7 @@ class ListComparer
   end
 
   def process
-    @json.map { |e| Parser.new.parse(e) }.each_cons(2).map do |a|
+    @json.map { |e| Parser.new(e).parse }.each_cons(2).map do |a|
       Comparer.new(*a).compare
     end
   end

@@ -8,14 +8,14 @@ get '/' do
 end
 
 post '/format' do
-  output = Parser.new.parse(JSON.parse(request.body.read))
+  output = Parser.new(JSON.parse(request.body.read)).parse
   json output
 end
 
 post '/compare_two' do
   input = JSON.parse(request.body.read)
-  input1 = Parser.new.parse JSON.parse(input['source1'])
-  input2 = Parser.new.parse JSON.parse(input['source2'])
+  input1 = Parser.new(JSON.parse(input['source1'])).parse
+  input2 = Parser.new(JSON.parse(input['source2'])).parse
   output = Comparer.new(input1, input2).compare
   json output
 end

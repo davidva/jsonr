@@ -13,11 +13,11 @@ describe Comparer do
     let(:new_input) { [] }
 
     specify do
-      comparison_value.should == [ [], [] ]
+      comparison_value.should == [[], []]
     end
 
     specify do
-      comparison_status.should == [ [], [] ]
+      comparison_status.should == [[], []]
     end
   end
 
@@ -27,11 +27,11 @@ describe Comparer do
     let(:new_input) { [] }
 
     specify do
-      comparison_value.should == [ ['a'], [' '] ]
+      comparison_value.should == [['a'], [' ']]
     end
 
     specify do
-      comparison_status.should == [ ['removed'], [''] ]
+      comparison_status.should == [['removed'], ['']]
     end
   end
 
@@ -41,11 +41,11 @@ describe Comparer do
     let(:new_input) { ['b'] }
 
     specify do
-      comparison_value.should == [ [' '], ['b'] ]
+      comparison_value.should == [[' '], ['b']]
     end
 
     specify do
-      comparison_status.should == [ [''], ['added'] ]
+      comparison_status.should == [[''], ['added']]
     end
   end
 
@@ -55,11 +55,11 @@ describe Comparer do
     let(:new_input) { ['b'] }
 
     specify do
-      comparison_value.should == [ [' ', 'a'], ['b', ' '] ]
+      comparison_value.should == [[' ', 'a'], ['b', ' ']]
     end
 
     specify do
-      comparison_status.should == [ ['', 'removed'], ['added', ''] ]
+      comparison_status.should == [['', 'removed'], ['added', '']]
     end
   end
 
@@ -69,11 +69,11 @@ describe Comparer do
     let(:new_input) { ['b', 'c'] }
 
     specify do
-      comparison_value.should == [ [' ', 'a', 'c'], ['b', ' ', 'c'] ]
+      comparison_value.should == [[' ', 'a', 'c'], ['b', ' ', 'c']]
     end
 
     specify do
-      comparison_status.should == [ ['', 'removed', ''], ['added', '', ''] ]
+      comparison_status.should == [['', 'removed', ''], ['added', '', '']]
     end
   end
 
@@ -83,11 +83,11 @@ describe Comparer do
     let(:new_input) { ['b,', 'c'] }
 
     specify do
-      comparison_value.should == [ ['a,', 'b', ' '], [' ', 'b,', 'c'] ]
+      comparison_value.should == [['a,', 'b', ' '], [' ', 'b,', 'c']]
     end
 
     specify do
-      comparison_status.should == [ ['removed', '', ''], ['', '', 'added'] ]
+      comparison_status.should == [['removed', '', ''], ['', '', 'added']]
     end
   end
 end
