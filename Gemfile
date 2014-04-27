@@ -9,4 +9,5 @@ group :development, :test do
   gem 'rspec'
   gem 'capybara-webkit', '0.14.2'
   gem 'pry'
+  gem 'rerun'
 end
